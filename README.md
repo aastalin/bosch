@@ -1,14 +1,13 @@
 # Kaggle Bosch Competition
-There are two sample code for kaggle competitions:
-
-
-Bosch Production Line Performance: 
-
-https://www.kaggle.com/c/bosch-production-line-performance
-
-
-0. Separate data to positive and negative
-
+> There are two sample code for kaggle competitions:
+> 
+> 
+> Bosch Production Line Performance: 
+>  
+> <https://www.kaggle.com/c/bosch-production-line-performance>
+> 
+---
+##0. Separate data to positive and negative
 Folder: script
 
 $ python dataHandle.py
