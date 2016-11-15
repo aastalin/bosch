@@ -13,7 +13,6 @@ Bosch Production Line Performance:
 $ python dataHandle.py
 ```
 </br>
-</br>
 ##1. Simple script for a tiny one-layer model
 **Folder:** script
 </br>
@@ -21,12 +20,10 @@ $ python dataHandle.py
 ```
 $ python simpleNN.py
 ```
-</br>
 **Test:**
 ```
 $ python predictNN.py
 ```
-</br>
 </br>
 ##2. caffe sample with self-defined data layer
 **Folder:** caffe
@@ -35,18 +32,14 @@ $ python predictNN.py
 $ cp -r bosch $CAFFE_ROOT/examples/
 $ cp -r lib $CAFFE_ROOT/
 ```
-</br>
 **Train:**
 ```
 $ ./examples/bosch/train_boschnet.sh
 ```
-</br>
 **Test:**
 ```
 $ ./examples/bosch/test_boschnet.sh
 ```
-</br>
-</br>
 </br>
 </br>
 **Feel free to download and make it your use-case : )**
