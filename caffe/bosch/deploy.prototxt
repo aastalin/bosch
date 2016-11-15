@@ -1,0 +1,264 @@
+name: "BoschNet"
+force_backward: true
+layer {
+  name: "input"
+  type: "Python"
+  top: "feature"
+  top: "date"
+  top: "label"
+  input_param {
+    shape {
+      dim: 128
+      dim: 968
+      dim: 1
+      dim: 1
+    }
+    shape {
+      dim: 128
+      dim: 1156
+      dim: 1
+      dim: 1
+    }
+    shape {
+      dim: 128
+      dim: 1
+    }
+  }
+  python_param {
+    module: 'bosch_data_layer'
+    layer: 'BoschDataLayer'
+  }
+}
+layer {
+  name: "fc1"
+  type: "InnerProduct"
+  bottom: "feature"
+  top: "fc1"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  inner_product_param {
+    num_output: 512
+  }
+}
+layer {
+  name: "relu1"
+  type: "ReLU"
+  bottom: "fc1"
+  top: "relu1"
+}
+layer {
+  name: "fc2"
+  type: "InnerProduct"
+  bottom: "relu1"
+  top: "fc2"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  inner_product_param {
+    num_output: 512
+  }
+}
+layer {
+  name: "relu2"
+  type: "ReLU"
+  bottom: "fc2"
+  top: "relu2"
+}
+layer {
+  name: "fc3"
+  type: "InnerProduct"
+  bottom: "relu2"
+  top: "fc3"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  inner_product_param {
+    num_output: 512
+  }
+}
+layer {
+  name: "relu3"
+  type: "ReLU"
+  bottom: "fc3"
+  top: "relu3"
+}
+layer {
+  name: "fc4"
+  type: "InnerProduct"
+  bottom: "date"
+  top: "fc4"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  inner_product_param {
+    num_output: 512
+  }
+}
+layer {
+  name: "relu4"
+  type: "ReLU"
+  bottom: "fc4"
+  top: "relu4"
+}
+layer {
+  name: "fc5"
+  type: "InnerProduct"
+  bottom: "relu4"
+  top: "fc5"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  inner_product_param {
+    num_output: 512
+  }
+}
+layer {
+  name: "relu5"
+  type: "ReLU"
+  bottom: "fc5"
+  top: "relu5"
+}
+layer {
+  name: "fc6"
+  type: "InnerProduct"
+  bottom: "relu5"
+  top: "fc6"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  inner_product_param {
+    num_output: 512
+  }
+}
+layer {
+  name: "relu6"
+  type: "ReLU"
+  bottom: "fc6"
+  top: "relu6"
+}
+layer {
+  name: "middle"
+  type: "Concat"
+  bottom: "relu3"
+  bottom: "relu6"
+  top: "middle"
+}
+layer {
+  name: "fc7"
+  type: "InnerProduct"
+  bottom: "middle"
+  top: "fc7"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  inner_product_param {
+    num_output: 512
+  }
+}
+layer {
+  name: "relu7"
+  type: "ReLU"
+  bottom: "fc7"
+  top: "relu7"
+}
+layer {
+  name: "drop7"
+  type: "Dropout"
+  bottom: "relu7"
+  top: "drop7"
+  dropout_param {
+    dropout_ratio: 0.5
+  }
+}
+layer {
+  name: "fc8"
+  type: "InnerProduct"
+  bottom: "drop7"
+  top: "fc8"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  inner_product_param {
+    num_output: 512
+  }
+}
+layer {
+  name: "relu8"
+  type: "ReLU"
+  bottom: "fc8"
+  top: "relu8"
+}
+layer {
+  name: "drop8"
+  type: "Dropout"
+  bottom: "relu8"
+  top: "drop8"
+  dropout_param {
+    dropout_ratio: 0.5
+  }
+}
+layer {
+  name: "fc9"
+  type: "InnerProduct"
+  bottom: "drop8"
+  top: "fc9"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  inner_product_param {
+    num_output: 2
+  }
+}
+layer {
+  name: "loss"
+  type: "SoftmaxWithLoss"
+  bottom: "fc9"
+  bottom: "label"
+  top: "loss"
+}
