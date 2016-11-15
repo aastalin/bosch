@@ -8,45 +8,46 @@
 > 
 ---
 ##0. Separate data to positive and negative
-Folder: script
-
+> ***Folder:*** script
+> 
+```C++
 $ python dataHandle.py
-
-
-1. Simple script for a tiny one-layer model
-
-Folder: script
-
-
-Train:
- 
+```
+> 
+> 
+##1. Simple script for a tiny one-layer model
+> ***Folder:*** script
+> 
+> ***Train:***
+```C++
 $ python simpleNN.py
-
-
-Test:
- 
+```
+> 
+> ***Test:***
+```C++
 $ python predictNN.py
-
-
-2. caffe sample with self-defined data layer
-
-Folder: caffe
-
+```
+> 
+> 
+##2. caffe sample with self-defined data layer
+> ***Folder:*** caffe
+> 
+```C++
 $ cp -r bosch $CAFFE_ROOT/examples/
-
 $ cp -r lib $CAFFE_ROOT/
-
-
-Train:
-
+```
+> 
+> ***Train:***
+```C++
 $ ./examples/bosch/train_boschnet.sh
-
-
-Test:
-
+```
+> 
+> ***Test:***
+```C++
 $ ./examples/bosch/test_boschnet.sh
-
-
-
-
-Feel free to download and make it your use-case : )
+```
+> 
+> 
+> 
+> 
+> Feel free to download and make it your use-case : )
